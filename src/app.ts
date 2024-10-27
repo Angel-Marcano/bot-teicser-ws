@@ -203,7 +203,7 @@ const sendMessageAssistant = async(ctx,flowDynamic) => {
       console.log(3)
       while (run.status !== "completed") {
         
-        await new Promise((resolve) => setTimeout(resolve, 10000));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         run = await openai.beta.threads.runs.retrieve(threadId, runResponse.id);
         // llamando a 
         console.log({status:run.status})
@@ -273,7 +273,7 @@ const sendMessageAssistant = async(ctx,flowDynamic) => {
                     return txt_call_function;
                 }
                 else if(nameFunction=='get_events_by_date'){
-                    const teamName = args.team.name ?? null;
+                    const teamName = args.team?.name ?? null;
                     const start_date = args.date_range.start_date;
                     const end_date = args.date_range.end_date;
                     const typeEvents = args.type_events;
